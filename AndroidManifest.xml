@@ -36,11 +36,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.wallt.WelcomeActivity" />
         </activity>
-        <activity
-            android:name="com.example.wallt.UIActivity" >
+        <activity android:name="com.example.wallt.UIActivity" >
         </activity>
-        <activity
-            android:name="com.example.wallt.RegisterAccount" >
+        <activity android:name="com.example.wallt.RegisterAccount" >
         </activity>
         <activity
             android:name="com.example.wallt.RegisterActivity"
@@ -54,8 +52,11 @@
             android:name="com.example.wallt.AdminHub"
             android:label="@string/title_activity_admin_hub" >
         </activity>
+        <activity android:name="com.example.wallt.BankAccountListActivity" >
+        </activity>
         <activity
-            android:name="com.example.wallt.BankAccountListActivity">
+            android:name="com.example.wallt.ListViewTest"
+            android:label="@string/title_activity_list_view_test" >
         </activity>
     </application>
 

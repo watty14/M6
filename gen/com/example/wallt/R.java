@@ -31,51 +31,52 @@ public final class R {
         public static final int wallt=0x7f020007;
     }
     public static final class id {
-        public static final int account_balance=0x7f080011;
-        public static final int account_balanceField=0x7f080012;
-        public static final int account_bankField=0x7f080010;
-        public static final int account_name=0x7f08000f;
-        public static final int account_number=0x7f080013;
-        public static final int account_numberField=0x7f080014;
-        public static final int action_settings=0x7f080019;
-        public static final int add_button=0x7f080001;
-        public static final int backToMain=0x7f080008;
-        public static final int btnLogin=0x7f080007;
-        public static final int create=0x7f08000e;
-        public static final int databaseFeed=0x7f080015;
-        public static final int emailAddress=0x7f08000c;
-        public static final int emailField=0x7f08000d;
-        public static final int imageView1=0x7f080017;
-        public static final int linearLayout1=0x7f080009;
-        public static final int link_Register=0x7f080018;
-        public static final int link_login=0x7f080016;
-        public static final int list=0x7f080000;
-        public static final int password=0x7f080005;
-        public static final int passwordField=0x7f080006;
-        public static final int remove_button=0x7f080002;
-        public static final int userName=0x7f08000a;
-        public static final int userNameField=0x7f08000b;
-        public static final int username=0x7f080003;
-        public static final int usernameField=0x7f080004;
+        public static final int account_balance=0x7f080010;
+        public static final int account_balanceField=0x7f080011;
+        public static final int account_bankField=0x7f08000f;
+        public static final int account_name=0x7f08000e;
+        public static final int account_number=0x7f080012;
+        public static final int account_numberField=0x7f080013;
+        public static final int action_settings=0x7f080018;
+        public static final int add_button=0x7f080000;
+        public static final int backToMain=0x7f080007;
+        public static final int btnLogin=0x7f080006;
+        public static final int create=0x7f08000d;
+        public static final int databaseFeed=0x7f080014;
+        public static final int emailAddress=0x7f08000b;
+        public static final int emailField=0x7f08000c;
+        public static final int imageView1=0x7f080016;
+        public static final int linearLayout1=0x7f080008;
+        public static final int link_Register=0x7f080017;
+        public static final int link_login=0x7f080015;
+        public static final int password=0x7f080004;
+        public static final int passwordField=0x7f080005;
+        public static final int remove_button=0x7f080001;
+        public static final int userName=0x7f080009;
+        public static final int userNameField=0x7f08000a;
+        public static final int username=0x7f080002;
+        public static final int usernameField=0x7f080003;
     }
     public static final class layout {
-        public static final int adminhub_activity=0x7f030000;
-        public static final int bankaccountlist_activity=0x7f030001;
-        public static final int login_activity=0x7f030002;
-        public static final int register_activity=0x7f030003;
-        public static final int registeraccount_activity=0x7f030004;
-        public static final int registrationfeed_activity=0x7f030005;
-        public static final int splash_activity=0x7f030006;
-        public static final int welcome_activity=0x7f030007;
+        public static final int activity_list_view_test=0x7f030000;
+        public static final int adminhub_activity=0x7f030001;
+        public static final int bankaccountlist_activity=0x7f030002;
+        public static final int login_activity=0x7f030003;
+        public static final int register_activity=0x7f030004;
+        public static final int registeraccount_activity=0x7f030005;
+        public static final int registrationfeed_activity=0x7f030006;
+        public static final int splash_activity=0x7f030007;
+        public static final int welcome_activity=0x7f030008;
     }
     public static final class menu {
         public static final int admin_hub=0x7f070000;
-        public static final int login_fail=0x7f070001;
-        public static final int main_hub=0x7f070002;
-        public static final int register=0x7f070003;
-        public static final int registration_fail=0x7f070004;
-        public static final int registration_feed=0x7f070005;
-        public static final int splash_activiy=0x7f070006;
+        public static final int list_view_test=0x7f070001;
+        public static final int login_fail=0x7f070002;
+        public static final int main_hub=0x7f070003;
+        public static final int register=0x7f070004;
+        public static final int registration_fail=0x7f070005;
+        public static final int registration_feed=0x7f070006;
+        public static final int splash_activiy=0x7f070007;
     }
     public static final class string {
         public static final int Login=0x7f050003;
@@ -101,6 +102,7 @@ public final class R {
         public static final int remove=0x7f05001e;
         public static final int successful_login=0x7f050010;
         public static final int title_activity_admin_hub=0x7f050018;
+        public static final int title_activity_list_view_test=0x7f05001f;
         public static final int title_activity_login=0x7f05000e;
         public static final int title_activity_login_fail=0x7f050015;
         public static final int title_activity_main_hub=0x7f050014;

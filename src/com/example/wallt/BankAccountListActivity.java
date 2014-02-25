@@ -18,11 +18,19 @@ public class BankAccountListActivity extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.bankaccountlist_activity);
+		
 		Intent extras = getIntent();
 		Bundle b = extras.getExtras();
 		username = (String) b.get("username");
+		//setContentView(R.layout.activity_list_view_test);
+		 
+		 
+		//final ListView listview = (ListView) findViewById(R.id.listview);
+
 		
-		final ListView list = (ListView) findViewById(R.id.list);
+		//final ListView list = (ListView) findViewById(R.id.list);
+		
+		
 		final DataBaseManager db = new DataBaseManager(this);
 		final LinkedList<BankAccount> accList = db.getBankAccounts(username);
 		
@@ -31,14 +39,20 @@ public class BankAccountListActivity extends ListActivity {
 		    setListAdapter(adapter);
 	
 	TextView AddAccount = (TextView) findViewById(R.id.add_button);
+	
+
     
     // Listener for Login button
+	
     AddAccount.setOnClickListener(new View.OnClickListener() {
+    	
 
         public void onClick(View v) {
       	  Intent i = new Intent(getApplicationContext(), RegisterAccount.class);
 		  i.putExtra("username", username);
       	  startActivity(i);
+      	  finish();
+
         }
     });
 

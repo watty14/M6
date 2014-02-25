@@ -162,7 +162,7 @@ public class DataBaseManager {
             + USERNAME + "= '" + username + "'" + " AND " + PASSWORD
             + "= '" + password + "'";
         Cursor c = database.rawQuery(selectQuery, null);
-        if (c != null) {
+        if (c != null && !c.isAfterLast()) {
            found = true;
         }
         return found;
@@ -174,11 +174,11 @@ public class DataBaseManager {
             String selectQuery = "SELECT * FROM " + TABLE_USERS + " WHERE "
                 + USERNAME + "= '" + username + "'";
             c = database.rawQuery(selectQuery, null);
-            if (c == null) {
+            if (c.isAfterLast()) {
                 addUser(username, password);
             }
         }
-        return c != null;
+        return !c.isAfterLast();
     }
 
     private class CustomSQLiteOpenHelper extends SQLiteOpenHelper {

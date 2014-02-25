@@ -39,7 +39,7 @@ public class LoginActivity extends Activity {
             	//this needs to be replaced with a SQL query
             	if (userName.getText().toString().equals("admin")
             			&& passWord.getText().toString().equals("pass123")) {
-            		Intent i = new Intent(getApplicationContext(), UIActivity.class);
+            		Intent i = new Intent(getApplicationContext(), ListViewTest.class);
             		startActivity(i);
             	}
             	else if (db.loginVerify(userName.getText().toString(),

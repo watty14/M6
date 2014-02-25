@@ -41,6 +41,7 @@ public class RegisterAccount extends Activity {
             		for (BankAccount bank : list) {
             			System.out.println(bank.toString());
             		}
+            		finish();
             	} else {
             		Toast.makeText(getApplicationContext(), "Incorrect Information.",
             				Toast.LENGTH_LONG).show();

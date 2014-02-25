@@ -32,6 +32,6 @@
     <string name="account_number">Account Number</string>
     <string name="add">Add</string>
     <string name="remove">Remove</string>
-    
+    <string name="title_activity_list_view_test">ListViewTest</string>
 
 </resources>
