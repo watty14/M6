@@ -170,15 +170,17 @@ public class DataBaseManager {
 
     public boolean registerVerify(String username, String password) {
         Cursor c = null;
+        boolean added = false;
         if (!username.equals("") && !password.equals("")) {
             String selectQuery = "SELECT * FROM " + TABLE_USERS + " WHERE "
                 + USERNAME + "= '" + username + "'";
             c = database.rawQuery(selectQuery, null);
             if (c.isAfterLast()) {
                 addUser(username, password);
+                added = true;
             }
         }
-        return c == null;
+        return added;
     }
 
     private class CustomSQLiteOpenHelper extends SQLiteOpenHelper {

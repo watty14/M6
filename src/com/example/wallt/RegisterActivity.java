@@ -27,7 +27,7 @@ public class RegisterActivity extends Activity {
         
         registerAccount.setOnClickListener(new View.OnClickListener() {
 	        public void onClick(View v) {
-	        	if (db.registerVerify(userName.getText().toString(),
+        		if (db.registerVerify(userName.getText().toString(),
 	        			passWord.getText().toString())) {
 		            Intent i = new Intent(getApplicationContext(), LoginActivity.class);
 		            i.putExtra("registeredUserName", userName.getText().toString());
