@@ -17,7 +17,7 @@ public class UIActivity extends ListActivity {
 		Intent extras = getIntent();
 		Bundle b = extras.getExtras();
 		username = (String) b.get("username");
-		String[] values = new String[] { "Accounts", "Budgets", "Cash Flow",
+		String[] values = new String[] { "Accounts", "Transactions", "Budgets", "Cash Flow",
 		    "Spending", "Income" };
 		    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 		        android.R.layout.simple_list_item_1, values);

@@ -178,7 +178,7 @@ public class DataBaseManager {
                 addUser(username, password);
             }
         }
-        return c == null || c.isAfterLast();
+        return c == null;
     }
 
     private class CustomSQLiteOpenHelper extends SQLiteOpenHelper {

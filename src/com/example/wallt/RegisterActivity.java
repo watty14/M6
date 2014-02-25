@@ -34,8 +34,7 @@ public class RegisterActivity extends Activity {
 		          	startActivity(i);
 		          	db.closeDataBase();
 		          	finish();
-	        	} else if (!db.registerVerify(userName.getText().toString(),
-	        			passWord.getText().toString())) {
+	        	} else {
 	        		Toast.makeText(getApplicationContext(),
 	        				"User ID already exists.", Toast.LENGTH_LONG).show();
 	            }
