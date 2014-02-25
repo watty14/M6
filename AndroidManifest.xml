@@ -58,6 +58,10 @@
             android:name="com.example.wallt.ListViewTest"
             android:label="@string/title_activity_list_view_test" >
         </activity>
+        <activity
+            android:name="com.example.wallt.TransactionActivity"
+            android:label="@string/title_activity_transaction" >
+        </activity>
     </application>
 
 </manifest>
