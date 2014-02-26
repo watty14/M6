@@ -162,6 +162,7 @@ public class DataBaseManager {
             database.update(TABLE_BANKACCOUNTS, values,
                     BALANCE + "= '" + balance + "'",
                     null);
+            System.out.println("Balance updated");
         } catch (Exception e) {
             Log.e("DB Error", e.toString());
             e.printStackTrace();
