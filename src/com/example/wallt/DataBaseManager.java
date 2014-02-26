@@ -98,10 +98,11 @@ public class DataBaseManager {
         if (cursor != null) {
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
+            	int key = cursor.getInt(0);
                 String accountNumber = cursor.getString(2);
                 String bankName = cursor.getString(3);
                 int balance = cursor.getInt(4);
-                BankAccount bankAccount = new BankAccount(accountNumber,
+                BankAccount bankAccount = new BankAccount(key, accountNumber,
                         balance, bankName);
                 list.add(bankAccount);
                 cursor.moveToNext();
@@ -109,6 +110,26 @@ public class DataBaseManager {
             cursor.close();
         }
         return list;
+    }
+    
+    public BankAccount getOneAccount(int key) {
+        BankAccount bankAccount = null;
+    	String selectQuery = "SELECT * FROM " + TABLE_BANKACCOUNTS + " WHERE "
+                + KEY_ID + "= '" + key + "'";
+        Cursor cursor = database.rawQuery(selectQuery, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                String accountNumber = cursor.getString(2);
+                String bankName = cursor.getString(3);
+                int balance = cursor.getInt(4);
+                bankAccount = new BankAccount(key, accountNumber,
+                        balance, bankName);
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+        return bankAccount;
     }
 
     public void deleteUser(String userName) {
@@ -134,12 +155,9 @@ public class DataBaseManager {
         }
     }
 
-    public void updateBalance(String userName, int accountNumber,
-            String bankName, int balance) {
+    public void updateBalance(int key, int balance) {
         ContentValues values = new ContentValues();
-        values.put(USERNAME, userName);
-        values.put(ACCOUNT_NUMBER, accountNumber);
-        values.put(BANK_NAME, bankName);
+        values.put(KEY_ID, key);
         try {
             database.update(TABLE_BANKACCOUNTS, values,
                     BALANCE + "= '" + balance + "'",

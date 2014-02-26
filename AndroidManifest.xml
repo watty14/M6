@@ -62,6 +62,10 @@
             android:name="com.example.wallt.TransactionActivity"
             android:label="@string/title_activity_transaction" >
         </activity>
+        <activity
+            android:name="com.example.wallt.PerformTransaction"
+            android:label="@string/title_activity_perform_transaction" >
+        </activity>
     </application>
 
 </manifest>

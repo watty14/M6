@@ -26,10 +26,14 @@ public class UIActivity extends ListActivity {
 
   @Override
   protected void onListItemClick(ListView l, View v, int position, long id) {
-	  if(position == 0) {
+	  if (position == 0) {
 		  Intent i = new Intent(getApplicationContext(), BankAccountListActivity.class);
 		  i.putExtra("username", username);
 		  startActivity(i);
+	  } else if (position == 1) {
+		  Intent i = new Intent(getApplicationContext(), TransactionActivity.class);
+		  i.putExtra("username", username);
+		  startActivity(i);  
 	  }
 //    String item = (String) getListAdapter().getItem(position);
 //    Toast.makeText(this, item + " selected", Toast.LENGTH_LONG).show();

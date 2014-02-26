@@ -24,7 +24,7 @@
         android:background="@drawable/bg1"
         android:gravity="center"
         android:onClick="createTask"
-        android:text="@string/add"
+        android:text="@string/backToMain"
         android:textSize="20sp" />
     
 	</LinearLayout>

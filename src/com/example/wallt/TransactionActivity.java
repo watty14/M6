@@ -16,6 +16,7 @@ import android.app.ListActivity;
 public class TransactionActivity extends ListActivity {
 
 	private String username;
+	LinkedList<BankAccount> accList;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,29 +27,30 @@ public class TransactionActivity extends ListActivity {
 		Bundle b = extras.getExtras();
 		username = (String) b.getString("username");
 		final DataBaseManager db = new DataBaseManager(this);
-		final LinkedList<BankAccount> accList = db.getBankAccounts(username);
+		accList = db.getBankAccounts(username);
 		ArrayAdapter<BankAccount> adapter = new ArrayAdapter<BankAccount>(this, 
 				android.R.layout.simple_list_item_1, accList);
 		setListAdapter(adapter);
-		/*
-		@Override
-		protected void onListItemClick(ListView l, View v, int position, long id) {
-		  if(position == 0) {
-			  Intent i = new Intent(getApplicationContext(), PerformTransaction.class);
-			  i.putExtra("username", username);
-			  startActivity(i);
-		  }
-		}
-	*/
+		
 		TextView removeAccount = (TextView) findViewById(R.id.back_button);
 
 		removeAccount.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
-      	  
+				db.closeDataBase();
+				finish();
 			}
 		});
 
 	}
+	
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		BankAccount desired = accList.get(position);
+		Intent i = new Intent(getApplicationContext(), PerformTransaction.class);
+	    i.putExtra("account", desired.getKey());
+		startActivity(i);
+
+	  }
 	
 }

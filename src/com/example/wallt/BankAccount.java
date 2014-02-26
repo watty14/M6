@@ -5,18 +5,24 @@ public class BankAccount {
 	private String accountNumber;
 	private int balance;
 	private String bankName;
+	private int key;
 	
-	public BankAccount(String accountNumber, int balance, String bankName) {
+	public BankAccount(int key, String accountNumber, int balance, String bankName) {
 		this.accountNumber = accountNumber;
 		this.balance = balance;
 		this.bankName = bankName;
+		this.key = key;
 	}
 	
 	public String getAccountNumber() {
 		return accountNumber;
 	}
 	
-	public double getBalance() {
+	public int getKey() {
+		return key;
+	}
+	
+	public int getBalance() {
 		return balance;
 	}
 	
