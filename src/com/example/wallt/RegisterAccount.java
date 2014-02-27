@@ -13,6 +13,7 @@ public class RegisterAccount extends Activity {
 	
 	private String username;
 	private DataBaseManager db;
+	private LinkedList<BankAccount> bankAccountList;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,15 +35,29 @@ public class RegisterAccount extends Activity {
         	
             public void onClick(View v) {
             	//this needs to be replaced with a SQL query
-            	if (!bankField.getText().toString().equals("") && !balanceField.getText().toString().equals("")) {
-            		db.addBankAccount(username, accNumber.getText().toString(), bankField.getText().toString(),
-            				Integer.parseInt(balanceField.getText().toString()));
-            		LinkedList<BankAccount> list = db.getBankAccounts(username);
-            		for (BankAccount bank : list) {
-            			System.out.println(bank.toString());
+            	try {
+            		Double balance = Double.parseDouble(balanceField.getText().toString());
+            		long account = Long.parseLong(accNumber.getText().toString());
+            		bankAccountList = db.getBankAccounts(username);
+            		for (BankAccount ele : bankAccountList) {
+            			if (Long.parseLong(ele.getAccountNumber()) == account) {
+            				throw new NumberFormatException();
+            			}
             		}
-            		finish();
-            	} else {
+            		if (!bankField.getText().toString().equals("") && !balanceField.getText().toString().equals("")) {
+            			db.addBankAccount(username, accNumber.getText().toString(), bankField.getText().toString(),
+            					Double.parseDouble(balanceField.getText().toString()));
+            			LinkedList<BankAccount> list = db.getBankAccounts(username);
+            			for (BankAccount bank : list) {
+            				System.out.println(bank.toString());
+            			}
+            			finish();
+            		}
+            		else {
+                		Toast.makeText(getApplicationContext(), "Incorrect Information.",
+                				Toast.LENGTH_LONG).show();
+                	}
+            	} catch (NumberFormatException e) {
             		Toast.makeText(getApplicationContext(), "Incorrect Information.",
             				Toast.LENGTH_LONG).show();
             	}

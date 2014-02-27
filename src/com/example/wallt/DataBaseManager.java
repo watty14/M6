@@ -20,6 +20,7 @@ public class DataBaseManager {
     //Table Names
     private static final String TABLE_USERS = "users_table";
     private static final String TABLE_BANKACCOUNTS = "bankAccounts_table";
+    private static final String TABLE_TRANSACTIONS = "transactions_table";
 
     //Common column names
     private static final String KEY_ID = "id";
@@ -32,6 +33,9 @@ public class DataBaseManager {
     private static final String ACCOUNT_NUMBER = "accountNumber";
     private static final String BANK_NAME = "bankName";
     private static final String BALANCE = "balance";
+    
+    //TRANSACTIONS TABLE - column names
+    private static final String TRANSACTION_AMOUNT = "transactionAmount";
 
     //Create USERS Table
     private static final String CREATE_TABLE_USERS = "create table "
@@ -48,8 +52,17 @@ public class DataBaseManager {
         + ACCOUNT_NUMBER + " text not null,"
         + BANK_NAME + " text not null, "
         + BALANCE + " integer not null"
+        + " unique (" + BANK_NAME + ", " + ACCOUNT_NUMBER + ")"
         + ");";
-
+    
+    //Create TRANSACTIONS Table
+    private static final String CREATE_TABLE_TRANSACTIONS = "create table "
+		+ TABLE_TRANSACTIONS + " (" + KEY_ID
+		+ "integer primary key autoincrement,"
+		+ BANK_NAME + " text not null,"
+		+ ACCOUNT_NUMBER + " text not null,"
+		+ TRANSACTION_AMOUNT + " integer not null"
+		+ ");";
 
     private SQLiteDatabase database;
 
@@ -71,9 +84,24 @@ public class DataBaseManager {
         }
         return userId;
     }
+    
+    public long addTransaction(String bankName, String accountNumber, int transactionAmount) {
+        ContentValues values = new ContentValues();
+        values.put(BANK_NAME, bankName);
+        values.put(ACCOUNT_NUMBER, accountNumber);
+        values.put(TRANSACTION_AMOUNT, transactionAmount);
+        long userId = -1;
+        try {
+            userId = database.insert(TABLE_TRANSACTIONS, null, values);
+        } catch (Exception e) {
+            Log.e("DB ERROR", e.toString());
+            e.printStackTrace();
+        }
+        return userId;
+    }
 
     public long addBankAccount(String username, String accountNumber,
-            String bankName, int balance) {
+            String bankName, double balance) {
         ContentValues values = new ContentValues();
         values.put(USERNAME, username);
         values.put(ACCOUNT_NUMBER, accountNumber);
@@ -105,6 +133,24 @@ public class DataBaseManager {
                 BankAccount bankAccount = new BankAccount(key, accountNumber,
                         balance, bankName);
                 list.add(bankAccount);
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+        return list;
+    }
+    
+    public LinkedList<Double> getTransactions(String bankName, String accountNumber) {
+        LinkedList<Double> list = new LinkedList<Double>();
+        String selectQuery = "SELECT * FROM " + TABLE_TRANSACTIONS + " WHERE "
+                + BANK_NAME + "= '" + bankName + "'" + " AND "
+        		+ ACCOUNT_NUMBER + "= '" + accountNumber + "'";
+        Cursor cursor = database.rawQuery(selectQuery, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+            	double amount = cursor.getInt(3);
+                list.add(amount);
                 cursor.moveToNext();
             }
             cursor.close();
@@ -155,12 +201,12 @@ public class DataBaseManager {
         }
     }
 
-    public void updateBalance(int key, int balance) {
+    public void updateBalance(int key, double balance) {
         ContentValues values = new ContentValues();
         values.put(KEY_ID, key);
         try {
             database.update(TABLE_BANKACCOUNTS, values,
-                    BALANCE + "= '" + balance + "'",
+                    BALANCE + "= " + balance,
                     null);
             System.out.println("Balance updated");
         } catch (Exception e) {
@@ -211,6 +257,7 @@ public class DataBaseManager {
         public void onCreate(SQLiteDatabase database) {
             database.execSQL(CREATE_TABLE_USERS);
             database.execSQL(CREATE_TABLE_BANKACCOUNTS);
+            database.execSQL(CREATE_TABLE_TRANSACTIONS);
         }
 
         public void onUpgrade(SQLiteDatabase db, int oldVersion,

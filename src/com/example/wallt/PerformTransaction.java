@@ -23,14 +23,14 @@ public class PerformTransaction extends Activity {
         
         depositButton.setOnClickListener(new View.OnClickListener() {
         	public void onClick(View v) {
-        		int balanceChange = Integer.parseInt(amount.getText().toString());
+        		double balanceChange = Integer.parseInt(amount.getText().toString());
         		db.updateBalance(key, account.getBalance() + balanceChange);
         	}
         });
         
         withdrawButton.setOnClickListener(new View.OnClickListener() {
         	public void onClick(View v) {
-        		int balanceChange = Integer.parseInt(amount.getText().toString());
+        		double balanceChange = Integer.parseInt(amount.getText().toString());
         		db.updateBalance(key, account.getBalance() - balanceChange);
         	}
         });

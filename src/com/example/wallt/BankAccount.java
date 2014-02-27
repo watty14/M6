@@ -3,11 +3,11 @@ package com.example.wallt;
 public class BankAccount {
 
 	private String accountNumber;
-	private int balance;
+	private double balance;
 	private String bankName;
 	private int key;
 	
-	public BankAccount(int key, String accountNumber, int balance, String bankName) {
+	public BankAccount(int key, String accountNumber, double balance, String bankName) {
 		this.accountNumber = accountNumber;
 		this.balance = balance;
 		this.bankName = bankName;
@@ -22,7 +22,7 @@ public class BankAccount {
 		return key;
 	}
 	
-	public int getBalance() {
+	public double getBalance() {
 		return balance;
 	}
 	
@@ -30,7 +30,7 @@ public class BankAccount {
 		return bankName;
 	}
 	
-	public void setBalance(int amount) {
+	public void setBalance(double amount) {
 		balance = amount;
 	}
 	
