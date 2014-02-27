@@ -203,10 +203,10 @@ public class DataBaseManager {
 
     public void updateBalance(int key, double balance) {
         ContentValues values = new ContentValues();
-        values.put(KEY_ID, key);
+        values.put(BALANCE, balance);
         try {
             database.update(TABLE_BANKACCOUNTS, values,
-                    BALANCE + "= " + balance,
+                    KEY_ID + "= " + key,
                     null);
             System.out.println("Balance updated");
         } catch (Exception e) {
