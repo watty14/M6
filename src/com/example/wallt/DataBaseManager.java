@@ -100,22 +100,14 @@ public class DataBaseManager {
         return userId;
     }
 
-    public long addBankAccount(String username, String accountNumber,
+    public boolean addBankAccount(String username, String accountNumber,
             String bankName, double balance) {
         ContentValues values = new ContentValues();
         values.put(USERNAME, username);
         values.put(ACCOUNT_NUMBER, accountNumber);
         values.put(BANK_NAME, bankName);
         values.put(BALANCE, balance);
-        long userId = -1;
-        try {
-            userId = database.insert(TABLE_BANKACCOUNTS, null, values);
-            System.out.println(userId);
-        } catch (Exception e) {
-            Log.e("DB ERROR", e.toString());
-            e.printStackTrace();
-        }
-        return userId;
+        return database.insert(TABLE_BANKACCOUNTS, null, values) != -1;
     }
     
     public LinkedList<BankAccount> getBankAccounts(String username) {

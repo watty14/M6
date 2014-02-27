@@ -36,22 +36,17 @@ public class RegisterAccount extends Activity {
             public void onClick(View v) {
             	//this needs to be replaced with a SQL query
             	try {
-            		Double balance = Double.parseDouble(balanceField.getText().toString());
-            		long account = Long.parseLong(accNumber.getText().toString());
             		bankAccountList = db.getBankAccounts(username);
-            		for (BankAccount ele : bankAccountList) {
-            			if (Long.parseLong(ele.getAccountNumber()) == account) {
-            				throw new NumberFormatException();
+            		if (!bankField.getText().toString().equals("")
+            				&& !balanceField.getText().toString().equals("")) {
+            			if (db.addBankAccount(username, accNumber.getText().toString(), bankField.getText().toString(),
+        					Double.parseDouble(balanceField.getText().toString()))) {
+	            			LinkedList<BankAccount> list = db.getBankAccounts(username);
+	            			for (BankAccount bank : list) {
+	            				System.out.println(bank.toString());
+	            			}
+	            			finish();
             			}
-            		}
-            		if (!bankField.getText().toString().equals("") && !balanceField.getText().toString().equals("")) {
-            			db.addBankAccount(username, accNumber.getText().toString(), bankField.getText().toString(),
-            					Double.parseDouble(balanceField.getText().toString()));
-            			LinkedList<BankAccount> list = db.getBankAccounts(username);
-            			for (BankAccount bank : list) {
-            				System.out.println(bank.toString());
-            			}
-            			finish();
             		}
             		else {
                 		Toast.makeText(getApplicationContext(), "Incorrect Information.",
